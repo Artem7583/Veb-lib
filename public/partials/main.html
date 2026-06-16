@@ -1,0 +1,491 @@
+      <main class="site-main">
+        <div id="notifyRoot" class="notify-root" aria-live="polite"></div>
+
+        <section class="page-section is-active" data-page="home">
+          <section class="home-hero panel panel--wide panel--edge visitor-only">
+            <div class="home-hero__grid">
+              <div>
+                <p class="home-hero__eyebrow">Муниципальная библиотека</p>
+                <h2 class="home-hero__title">Книги, сервисы и электронный каталог в одном месте</h2>
+                <p class="home-hero__lead">Запишитесь как читатель, найдите издание в каталоге и отправьте запрос на выдачу.</p>
+                <div class="home-hero__actions">
+                  <button type="button" class="solid-button" data-jump-route="catalog">Открыть каталог</button>
+                  <button type="button" class="ghost-button guest-only" id="homeLoginBtn" data-jump-route="account">Личный кабинет</button>
+                  <button type="button" class="ghost-button reader-only hidden" data-jump-route="requests">Мои запросы</button>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="home-hero panel panel--wide home-hero--staff staff-only">
+            <p class="home-hero__eyebrow">Сотрудникам</p>
+            <h2 class="home-hero__title home-hero__title--compact">Работа с фондом и читателями</h2>
+            <p class="home-hero__lead">Каталог, экземпляры, выдача и отчёты — в меню «Работа» и в разделах выше.</p>
+            <div class="home-hero__actions">
+              <button type="button" class="solid-button" data-jump-route="catalog">Каталог фонда</button>
+              <button type="button" class="ghost-button" data-jump-route="return">Выдача и возврат</button>
+            </div>
+          </section>
+          <section class="home-spotlight">
+            <div class="home-spotlight__head">
+              <h2 class="home-spotlight__title">Знаете ли вы?</h2>
+              <p class="small-text">Короткие факты о классиках — чтобы в каталоге было интереснее искать</p>
+            </div>
+            <div class="spotlight-grid">
+              <article class="spotlight-card">
+                <div class="spotlight-card__visual"><img src="/img/authors/pushkin.jpg?v=1" alt="Александр Пушкин" class="spotlight-card__img" width="96" height="96" loading="eager" decoding="async" data-fallback="/img/author-pushkin.svg?v=11" /></div>
+                <h3>Александр Пушкин</h3>
+                <p>За 37 лет успел написать «Евгения Онегина», десятки стихотворений и основу современного русского литературного языка.</p>
+                <button type="button" class="ghost-button" data-jump-route="catalog">Искать в каталоге</button>
+              </article>
+              <article class="spotlight-card">
+                <div class="spotlight-card__visual"><img src="/img/authors/akhmatova.jpg?v=1" alt="Анна Ахматова" class="spotlight-card__img" width="96" height="96" loading="eager" decoding="async" data-fallback="/img/author-akhmatova.svg?v=11" /></div>
+                <h3>Анна Ахматова</h3>
+                <p>Стихи о любви и городе пережили цензуру: сегодня её сборники — одни из самых востребованных у молодых читателей.</p>
+                <button type="button" class="ghost-button" data-jump-route="catalog">Искать в каталоге</button>
+              </article>
+              <article class="spotlight-card">
+                <div class="spotlight-card__visual"><img src="/img/authors/gogol.jpg?v=1" alt="Николай Гоголь" class="spotlight-card__img" width="96" height="96" loading="eager" decoding="async" data-fallback="/img/author-gogol.svg?v=11" /></div>
+                <h3>Николай Гоголь</h3>
+                <p>«Мёртвые души» начинались как лёгкая поэма о Чичикове — а превратились в энциклопедия русской жизни XIX века.</p>
+                <button type="button" class="ghost-button" data-jump-route="catalog">Искать в каталоге</button>
+              </article>
+            </div>
+          </section>
+          <div class="home-tiles">
+            <article class="panel home-tile">
+              <h3>Новости фонда</h3>
+              <p>Поступили учебники по программированию и художественная литература. Полный список — в разделе «Новости».</p>
+              <div class="home-tile__footer">
+                <button type="button" class="ghost-button" data-jump-route="news">Все новости</button>
+              </div>
+            </article>
+            <article class="panel home-tile">
+              <h3>Мероприятия</h3>
+              <p>Литературные вечера, мастер-классы по поиску в каталоге, встречи с авторами края.</p>
+              <div class="home-tile__footer">
+                <button type="button" class="ghost-button" data-jump-route="events">Афиша</button>
+              </div>
+            </article>
+            <article class="panel home-tile">
+              <h3>Читателям</h3>
+              <p>Как получить билет, забронировать книгу, продлить срок и написать в поддержку.</p>
+              <div class="home-tile__footer">
+                <button type="button" class="ghost-button" data-jump-route="readers-info">Инструкция</button>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="page-section" data-page="catalog">
+          <section class="panel panel--wide catalog-panel">
+              <div class="panel__header">
+                <div>
+                  <h3>Электронный каталог</h3>
+                  <p id="resultsCount">Загрузка...</p>
+                  <p class="small-text catalog-hint guest-only" id="guestCatalogHint">Поиск по каталогу доступен всем. Фильтры и бронь — после входа.</p>
+                </div>
+                <div class="panel__header-aside catalog-toolbar">
+                  <button type="button" class="solid-button catalog-staff-only staff-only" id="openNewBookButton">Добавить новую книгу</button>
+                  <label class="inline-label catalog-per-page staff-only" title="Сколько карточек книг показывать на одной странице каталога"><span>Книг на странице</span><select id="catalogPerPage" class="compact-select" aria-label="Книг на странице"><option value="8">8</option><option value="12" selected>12</option><option value="24">24</option><option value="48">48</option></select></label>
+                </div>
+              </div>
+              <div id="booksGrid" class="books-grid"></div>
+              <nav id="catalogPager" class="pager" aria-label="Страницы каталога"></nav>
+          </section>
+        </section>
+
+        <section class="page-section" data-page="copies">
+          <section class="panel panel--wide copies-workspace">
+            <nav class="copies-steps" aria-label="Шаги учёта экземпляров">
+              <button type="button" class="copies-step" id="copiesStepPick">1. Выбор книги</button>
+              <button type="button" class="copies-step copies-step--disabled" id="copiesStepManage" disabled>2. Экземпляры на полке</button>
+            </nav>
+            <div class="panel__header copies-workspace__header">
+              <div>
+                <h3>Учёт экземпляров</h3>
+                <p id="copiesSummary">Найдите издание в фонде и откройте список физических копий на полке.</p>
+              </div>
+              <div class="panel__header-aside copies-toolbar">
+                <button type="button" class="ghost-button" id="changeCopiesBookButton" hidden>Сменить книгу</button>
+                <button type="button" class="ghost-button librarian-only-inline" id="editSelectedBookButton" hidden>Карточка книги</button>
+                <button type="button" class="solid-button librarian-only-inline" id="openAddCopiesButton" disabled>Добавить экземпляры</button>
+                <button type="button" class="ghost-button" id="refreshCopiesButton" hidden>Обновить</button>
+              </div>
+            </div>
+
+            <div id="copiesBookPicker" class="copies-book-picker">
+              <div class="copies-intro">
+                <p class="copies-intro__lead">Каждый экземпляр имеет свой инвентарный номер. Выберите книгу — ниже откроется учёт копий, состояния и выдач.</p>
+              </div>
+              <div class="copies-search-bar catalog-bar">
+                <label class="catalog-bar__search">
+                  <span class="visually-hidden">Поиск по фонду</span>
+                  <input type="search" id="copiesBookSearch" placeholder="Название, автор, ISBN…" autocomplete="off" />
+                </label>
+                <span id="copiesBookCount" class="copies-count-badge">0 книг</span>
+              </div>
+              <div class="table-wrap copies-table-wrap">
+                <table class="data-table copies-book-table">
+                  <thead>
+                    <tr>
+                      <th>Название</th>
+                      <th>Автор</th>
+                      <th>ISBN</th>
+                      <th>На полке</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody id="copiesBookList"></tbody>
+                </table>
+              </div>
+              <nav id="copiesBookPager" class="pager" aria-label="Страницы списка книг"></nav>
+            </div>
+
+            <div id="copiesPanel" class="copies-panel hidden">
+              <div class="copies-panel-nav">
+                <button type="button" class="ghost-button copies-back-btn" id="copiesBackToListButton">← К выбору книги</button>
+              </div>
+              <article id="copiesBookHero" class="copies-book-hero" aria-live="polite"></article>
+              <div id="copiesStatsRow" class="copies-stats" aria-label="Сводка по экземплярам"></div>
+              <div class="copies-table-section">
+                <div class="copies-table-section__head">
+                  <h4>Экземпляры на полке</h4>
+                  <label class="inline-label copies-filter">
+                    <span>Статус</span>
+                    <select id="copiesStatusFilter" class="compact-select">
+                      <option value="">Все</option>
+                      <option value="available">Доступны</option>
+                      <option value="on_loan">На руках</option>
+                      <option value="damaged">Повреждены</option>
+                      <option value="lost">Утеряны</option>
+                      <option value="written_off">Списаны</option>
+                      <option value="replaced">Заменены</option>
+                    </select>
+                  </label>
+                </div>
+                <div class="table-wrap copies-table-wrap">
+                  <table class="data-table copies-table">
+                    <thead>
+                      <tr>
+                        <th>Инв. №</th>
+                        <th>Статус</th>
+                        <th>Состояние</th>
+                        <th>Поступление</th>
+                        <th>Читатель / примечание</th>
+                        <th class="librarian-only-inline">Действия</th>
+                      </tr>
+                    </thead>
+                    <tbody id="copiesTable"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </section>
+        </section>
+        <section class="page-section" data-page="requests"><section class="panel panel--wide"><div class="panel__header"><div><h3>Запросы на выдачу</h3><p id="requestsSummary"></p></div></div><div id="requestsList" class="cart-list"></div><nav id="requestsPager" class="pager" aria-label="Страницы запросов"></nav></section></section>
+        <section class="page-section" data-page="my-books"><section class="panel panel--wide"><div class="panel__header"><div><h3>Мои книги</h3><p>Книги на руках. Продление — по кнопке в таблице (срок берётся из настроек библиотеки).</p></div></div><div class="table-wrap"><table class="data-table"><thead><tr><th>Книга</th><th class="staff-table-col">Читатель</th><th class="reader-table-col">Выдано</th><th>Срок возврата</th><th>Статус</th><th></th></tr></thead><tbody id="loansTable"></tbody></table></div><nav id="loansPager" class="pager" aria-label="Страницы моих книг"></nav></section></section>
+        <section class="page-section" data-page="history"><section class="panel panel--wide"><div class="panel__header"><div><h3>История</h3><p>Ранее взятые книги.</p></div></div><div id="historyList" class="timeline"></div><nav id="historyPager" class="pager" aria-label="Страницы истории"></nav></section></section>
+
+        <section class="page-section" data-page="patrons">
+          <section class="panel panel--wide">
+            <div class="panel__header">
+              <div><h3>Читатели библиотеки</h3><p>Карточки читательских билетов и задолженности.</p></div>
+              <div class="panel__header-aside"><button type="button" class="solid-button admin-only" id="openNewPatronButton">Добавить читателя</button></div>
+            </div>
+            <div class="table-wrap"><table class="data-table"><thead><tr><th>Читатель</th><th>Билет</th><th>Статус</th><th>На руках</th><th>Просрочено</th><th></th></tr></thead><tbody id="patronsTable"></tbody></table></div>
+            <nav id="patronsPager" class="pager" aria-label="Страницы читателей"></nav>
+          </section>
+        </section>
+
+        <section class="page-section" data-page="return"><div class="section-grid"><section class="panel staff-ops-only"><div class="panel__header"><div><h3>Оформить выдачу</h3><p>Выберите свободный экземпляр и читателя.</p></div></div><form id="issueForm" class="stack-form"><label><span>Фильтр экземпляров</span><input type="search" id="issueCopyFilter" placeholder="Название или инв. номер" autocomplete="off" /></label><label><span>Экземпляр</span><select name="copyId" id="issueCopySelect" required></select></label><label><span>Фильтр читателей</span><input type="search" id="issuePatronFilter" placeholder="ФИО или билет" autocomplete="off" /></label><label><span>Читатель</span><select name="patronId" id="issuePatronSelect" required></select></label><label><span>Срок возврата</span><input type="date" name="dueAt" required /></label><label><span>Примечание</span><textarea name="notes" rows="2"></textarea></label><button class="solid-button" type="submit">Выдать</button></form></section><section class="panel panel--wide"><div class="panel__header"><div><h3>Возврат, продление и утеря</h3><p>Найдите активную выдачу и нажмите нужную кнопку: «Возврат» — книга снова доступна, «Продлить» — новый срок, «Утеря» — экземпляр списан как утерянный.</p></div></div><div class="table-wrap"><table class="data-table"><thead><tr><th>Книга</th><th>Читатель</th><th>Срок</th><th>Статус</th><th>Действия</th></tr></thead><tbody id="returnTable"></tbody></table></div><nav id="returnPager" class="pager" aria-label="Страницы активных выдач"></nav></section></div></section>
+
+        <section class="page-section" data-page="analytics">
+          <section class="panel panel--wide">
+            <div class="panel__header">
+              <div>
+                <h3>Отчёты и журнал</h3>
+                <p class="small-text">Отчёты — сводка по фонду и выдачам. Журнал — хронология действий сотрудников в системе.</p>
+              </div>
+              <div class="subtabs" id="analyticsSubtabs">
+                <button type="button" class="subtab is-active" data-analytics-tab="reports">Отчёты</button>
+                <button type="button" class="subtab" data-analytics-tab="logs">Журнал операций</button>
+              </div>
+            </div>
+            <div id="analyticsReportsPane"><div id="reportsList" class="timeline"></div></div>
+            <div id="analyticsLogsPane" class="hidden"><div id="transactionsList" class="timeline"></div><nav id="transactionsPager" class="pager" aria-label="Страницы журнала"></nav></div>
+          </section>
+        </section>
+        <section class="page-section" data-page="users">
+          <section class="panel panel--wide">
+            <div class="panel__header">
+              <div><h3>Учётные записи</h3><p>Подтверждайте регистрации читателей и управляйте сотрудниками.</p></div>
+              <div class="panel__header-aside"><button type="button" class="solid-button" id="openNewUserButton">Добавить пользователя</button></div>
+            </div>
+            <div class="table-wrap"><table class="data-table"><thead><tr><th>Пользователь</th><th>Email</th><th>Роль</th><th>Статус</th><th></th></tr></thead><tbody id="usersTable"></tbody></table></div>
+            <nav id="usersPager" class="pager" aria-label="Страницы пользователей"></nav>
+          </section>
+        </section>
+        <section class="page-section" data-page="messages">
+          <section class="panel panel--wide chat-panel">
+            <div class="panel__header chat-panel__header">
+              <div>
+                <h3>Сообщения</h3>
+                <p id="chatPageHint" class="small-text hidden"></p>
+              </div>
+            </div>
+            <div class="chat-layout chat-layout--solo" id="chatLayout">
+              <aside class="chat-sidebar hidden" id="chatThreadList" aria-label="Диалоги"></aside>
+              <div class="chat-main">
+                <div class="chat-main__head hidden" id="chatThreadHead"></div>
+                <div class="chat-messages" id="chatMessages" role="log" aria-live="polite"></div>
+                <form id="chatComposeForm" class="chat-compose hidden">
+                  <textarea name="body" rows="2" required maxlength="4000" placeholder="Введите сообщение…"></textarea>
+                  <button type="submit" class="solid-button">Отправить</button>
+                </form>
+                <form id="chatNewThreadForm" class="chat-new hidden">
+                  <label><span>Тема</span><input name="subject" maxlength="200" placeholder="Например: вопрос по выдаче" /></label>
+                  <label><span>Сообщение</span><textarea name="body" rows="3" required maxlength="4000" placeholder="Ваш вопрос администратору"></textarea></label>
+                  <button type="submit" class="solid-button">Отправить</button>
+                </form>
+              </div>
+            </div>
+          </section>
+        </section>
+        <section class="page-section" data-page="settings">
+          <section class="panel panel--wide">
+            <div class="panel__header"><div><h3>Настройки</h3><p>Контакты и соцсети — в подвале сайта. Срок выдачи — при оформлении книг.</p></div></div>
+            <form id="settingsForm" class="stack-form settings-form">
+              <fieldset class="settings-group">
+                <legend>Название и оформление</legend>
+                <label><span>Название в шапке и подвале</span><input name="library_site_name" type="text" /></label>
+              </fieldset>
+              <fieldset class="settings-group">
+                <legend>Выдача книг</legend>
+                <label><span>Максимальный срок выдачи, дней</span><input name="max_loan_days" type="number" min="1" max="365" /></label>
+                <label><span>Штрафные санкции</span><textarea name="fine_policy" rows="3"></textarea></label>
+              </fieldset>
+              <fieldset class="settings-group">
+                <legend>Контакты и подвал</legend>
+                <label><span>Email для читателей</span><input name="library_contact_email" type="email" /></label>
+                <label><span>Телефон библиотеки</span><input name="library_contact_phone" type="text" /></label>
+                <label><span>График работы</span><textarea name="library_work_hours" rows="4" placeholder="Пн–Пт 9:00–20:00&#10;Сб 10:00–18:00&#10;Вс — выходной"></textarea></label>
+                <label><span>Ссылка ВКонтакте</span><input name="library_vk_url" type="url" placeholder="https://vk.com/..." /></label>
+                <label><span>Ссылка MAX</span><input name="library_max_url" type="url" placeholder="https://..." /></label>
+              </fieldset>
+              <fieldset class="settings-group">
+                <legend>Каталог книг (CSV для Excel)</legend>
+                <p class="small-text">Скачайте шаблон, заполните в Excel и загрузите обратно. Экспорт выгружает текущий каталог с обложками и числом экземпляров.</p>
+                <div class="catalog-io-grid">
+                  <button type="button" class="ghost-button catalog-io-btn" id="downloadCatalogTemplateBtn">Скачать шаблон</button>
+                  <button type="button" class="ghost-button catalog-io-btn" id="exportCatalogBtn">Экспорт каталога</button>
+                  <label class="ghost-button catalog-io-btn catalog-io-file" id="importCatalogLabel">
+                    Импорт CSV
+                    <input type="file" id="importCatalogInput" accept=".csv,text/csv" tabindex="-1" />
+                  </label>
+                </div>
+                <p id="catalogImportStatus" class="small-text catalog-import-status"></p>
+              </fieldset>
+              <fieldset class="settings-group">
+                <legend>Система</legend>
+                <label class="checkbox-label"><input name="library_demo_reset_links" type="checkbox" value="true" checked /> Показывать демо-ссылку сброса пароля на экране</label>
+              </fieldset>
+              <button class="solid-button" type="submit">Сохранить настройки</button>
+            </form>
+          </section>
+        </section>
+
+        <section class="page-section" data-page="account">
+          <section class="panel panel--wide account-page">
+            <div class="panel__header">
+              <div>
+                <h3>Вход для читателей</h3>
+                <p class="small-text">После входа разделы «Мои книги» и «Запросы» — в меню «Мой кабинет».</p>
+              </div>
+            </div>
+            <div class="account-page__tabs" role="tablist">
+              <button type="button" class="account-tab is-active" data-account-tab="login">Вход</button>
+              <button type="button" class="account-tab" data-account-tab="register">Регистрация</button>
+            </div>
+            <div class="account-page__body">
+              <div id="accountPaneLogin" class="account-pane is-active">
+                <form class="stack-form account-form" id="accountLoginForm">
+                  <div class="form-message hidden" id="accountLoginMessage"></div>
+                  <label><span>Email</span><input name="username" type="email" required autocomplete="username" /></label>
+                  <label><span>Пароль</span><div class="password-field"><input name="password" type="password" required autocomplete="current-password" /><button class="ghost-button password-toggle" type="button" data-toggle-password>Показать</button></div></label>
+                  <p class="small-text"><button type="button" class="link-button" id="accountForgotBtn">Забыли пароль?</button></p>
+                  <button class="solid-button" type="submit">Войти</button>
+                </form>
+              </div>
+              <div id="accountPaneRegister" class="account-pane">
+                <form class="stack-form account-form" id="accountRegisterForm">
+                  <div class="form-message hidden" id="accountRegisterMessage"></div>
+                  <label><span>ФИО</span><input name="fullName" required /></label>
+                  <label><span>Email</span><input name="email" type="email" required /></label>
+                  <label><span>Пароль</span><div class="password-field"><input name="password" type="password" minlength="6" required /><button class="ghost-button password-toggle" type="button" data-toggle-password>Показать</button></div></label>
+                  <p class="small-text form-field-hint">Администратор подтвердит заявку — затем войдите.</p>
+                  <button class="solid-button" type="submit" id="accountRegisterSubmit">Отправить заявку</button>
+                </form>
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <section class="page-section" data-page="cabinet">
+          <section class="panel panel--wide cabinet-page cabinet-page--profile">
+            <div class="panel__header panel__header--profile">
+              <div>
+                <h3>Мой профиль</h3>
+                <p id="profilePanelHint" class="small-text">Статистика, выдачи и данные читательского билета.</p>
+              </div>
+              <div class="profile-toolbar reader-only hidden" id="profileToolbar">
+                <button type="button" class="ghost-button" id="openPasswordDialogBtn">Сменить пароль</button>
+              </div>
+            </div>
+            <div id="profilePanel" class="profile-panel cabinet-profile"></div>
+          </section>
+        </section>
+
+        <section class="page-section" data-page="favorites">
+          <section class="panel panel--wide">
+            <div class="panel__header">
+              <div>
+                <h3>Избранное</h3>
+                <p class="small-text">Книги, отмеченные звёздочкой в каталоге.</p>
+              </div>
+              <button type="button" class="ghost-button" data-jump-route="catalog">В каталог</button>
+            </div>
+            <div id="favoritesList" class="favorites-list"></div>
+          </section>
+        </section>
+
+        <section class="page-section" data-page="about">
+          <section class="panel panel--wide">
+            <div class="panel__header"><div><h3>О библиотеке</h3><p>Учебный проект автоматизированной библиотечной системы.</p></div></div>
+            <div class="info-prose">
+              <p>Здесь размещают сведения о миссии библиотеки, истории учреждения, подразделениях и документах. В демо-версии это информационный блок: рабочий каталог, выдачи и учёт фонда находятся во вкладках выше.</p>
+              <ul>
+                <li><strong>Библиотека сегодня</strong> — цифровой каталог и онлайн-запросы на выдачу.</li>
+                <li><strong>Публичные отчёты</strong> — раздел «Отчёты» для сотрудников.</li>
+                <li><strong>Доступная среда</strong> — при необходимости добавьте контакты и режим работы залов.</li>
+              </ul>
+            </div>
+          </section>
+        </section>
+
+        <section class="page-section" data-page="services">
+          <section class="panel panel--wide">
+            <div class="panel__header"><div><h3>Услуги</h3><p>Типовой перечень для публичной библиотеки.</p></div></div>
+            <div class="info-prose">
+              <ul>
+                <li>Запись читателя и выдача читательского билета (в проекте — регистрация и подтверждение администратором).</li>
+                <li>Выдача и возврат документов, продление срока пользования.</li>
+                <li>Справки по фонду, консультации по поиску изданий.</li>
+                <li>Информирование о новых поступлениях (заготовка под рассылку).</li>
+              </ul>
+            </div>
+          </section>
+        </section>
+
+        <section class="page-section" data-page="readers-info">
+          <section class="panel panel--wide">
+            <div class="panel__header"><div><h3>Читателям</h3><p>Как пользоваться этой системой.</p></div></div>
+            <div class="info-prose">
+              <ol>
+                <li>Зарегистрируйтесь и дождитесь подтверждения учётной записи администратором.</li>
+                <li>В каталоге найдите книгу и отправьте запрос на выдачу, если есть свободные экземпляры.</li>
+                <li>Срок возврата и продление согласовываются с библиотекарем (вкладки «Мои книги» и «Запросы»).</li>
+              </ol>
+            </div>
+          </section>
+        </section>
+
+        <section class="page-section" data-page="virtual">
+          <section class="panel panel--wide">
+            <div class="panel__header"><div><h3>Виртуальные службы</h3><p>Дополнительные сервисы (макет).</p></div></div>
+            <div class="info-prose">
+              <p>Здесь обычно размещают «Спроси библиотекаря», дистанционное бронирование, доступ к лицензионным базам. В учебном проекте достаточно заглушки: основной функционал — каталог, запросы и выдача.</p>
+            </div>
+          </section>
+        </section>
+
+        <section class="page-section" data-page="events">
+          <section class="panel panel--wide">
+            <div class="panel__header"><div><h3>Афиша</h3><p>Мероприятия библиотеки</p></div></div>
+            <div class="timeline">
+              <article class="timeline-item"><div class="timeline-item__type">Скоро</div><div class="timeline-item__title">Литературный вечер</div><div class="timeline-item__meta">Дата уточняется</div><p>При подключении календаря события можно вести отдельной таблицей в БД.</p></article>
+              <article class="timeline-item"><div class="timeline-item__type">Цикл</div><div class="timeline-item__title">Мастер-класс по поиску в каталоге</div><div class="timeline-item__meta">Для новых читателей</div></article>
+            </div>
+          </section>
+        </section>
+
+        <section class="page-section" data-page="news">
+          <section class="panel panel--wide">
+            <div class="panel__header"><div><h3>Новости</h3><p>Информационный раздел сайта (контент-заглушки).</p></div></div>
+            <div class="timeline">
+              <article class="timeline-item"><div class="timeline-item__type"><span class="status-pill status-pill--live">Работает</span></div><div class="timeline-item__title">Восстановление пароля</div><div class="timeline-item__meta">Май 2026</div><p>«Забыли пароль?» — сброс по email; в демо ссылка показывается на экране. Общие вопросы — через «Сообщения» после входа.</p></article>
+              <article class="timeline-item"><div class="timeline-item__type"><span class="status-pill status-pill--live">Работает</span></div><div class="timeline-item__title">Личный кабинет читателя</div><div class="timeline-item__meta">Май 2026</div><p>Запросы, книги на руках, история, избранное в каталоге.</p></article>
+              <article class="timeline-item"><div class="timeline-item__type"><span class="status-pill status-pill--dev">Скоро</span></div><div class="timeline-item__title">Рассылка о новых поступлениях</div><div class="timeline-item__meta">Планируется</div><p>Email-уведомления после подключения почтового сервера.</p></article>
+            </div>
+          </section>
+        </section>
+
+        <section class="page-section" data-page="partners">
+          <section class="panel panel--wide">
+            <div class="panel__header"><div><h3>Партнёры</h3><p>Сотрудничество (заготовка).</p></div></div>
+            <div class="info-prose"><p>Раздел для логотипов и ссылок на образовательные учреждения, издательства, региональные порталы. Не влияет на учёт книг.</p></div>
+          </section>
+        </section>
+
+        <section class="page-section" data-page="roadmap">
+          <div class="section-grid">
+            <section class="panel panel--wide">
+              <div class="panel__header"><div><h3>Статус проекта</h3><p>Что уже работает в системе и что запланировано.</p></div></div>
+              <div class="info-prose roadmap-intro">
+                <p><span class="status-pill status-pill--live">Испытание пройдено</span> — функция работает в системе (проверено автотестами и сценариями). <span class="status-pill status-pill--dev">В разработке</span> — только макет или план.</p>
+              </div>
+              <h4 class="info-subheading">Испытательные функции (работают)</h4>
+              <ul class="feature-checklist">
+                <li><span class="status-pill status-pill--live">OK</span> Вход, регистрация, роли (читатель, библиотекарь, менеджер, админ)</li>
+                <li><span class="status-pill status-pill--live">OK</span> Каталог, фильтры, карточка книги, избранное</li>
+                <li><span class="status-pill status-pill--live">OK</span> Запрос на выдачу → одобрение → выдача → возврат / продление / утеря</li>
+                <li><span class="status-pill status-pill--live">OK</span> Учёт экземпляров: состояние, добавление, списание, замена</li>
+                <li><span class="status-pill status-pill--live">OK</span> Профиль читателя: смена пароля, обращение администратору</li>
+                <li><span class="status-pill status-pill--live">OK</span> Восстановление пароля: по email (демо-ссылка) или письмо админу</li>
+                <li><span class="status-pill status-pill--live">OK</span> Админ: пользователи, обращения, настройки, логи</li>
+              </ul>
+              <h4 class="info-subheading">Недавние обновления</h4>
+              <div class="timeline roadmap-news">
+                <article class="timeline-item"><div class="timeline-item__type">Май 2026</div><div class="timeline-item__title">Раздельное редактирование книги и экземпляров</div><p>Карточка книги не создаёт лишние экземпляры; состояние — у каждой копии отдельно.</p></article>
+                <article class="timeline-item"><div class="timeline-item__type">Май 2026</div><div class="timeline-item__title">Пагинация каталога и таблиц</div><p>Удобная навигация по длинным спискам.</p></article>
+              </div>
+            </section>
+            <section class="panel">
+              <div class="panel__header"><div><h3>Запланировано</h3><p>Не влияет на текущий учёт фонда.</p></div></div>
+              <ul class="roadmap-list">
+                <li><strong>МДБАЗ — межбиблиотечный абонемент</strong> — заявки и статусы между филиалами.</li>
+                <li><strong>Склад и перемещение фонда</strong> — партии поступления, ячейки хранения, акты.</li>
+                <li><strong>Расписание и запись на мероприятия</strong> — привязка к афише, лимиты мест.</li>
+                <li><strong>Уведомления и рассылки</strong> — e-mail/Telegram о сроках возврата и новых поступлениях.</li>
+                <li><strong>Интеграция с внешним каталогом (РСХБ / IRBIS)</strong> — импорт/экспорт записей.</li>
+                <li><strong>Резервирование полки</strong> — удержанный экземпляр для читателя на N дней.</li>
+                <li><strong>Статистика посещаемости и KPI</strong> — отчёты для руководства.</li>
+                <li><strong>Мобильное приложение читателя</strong> — тот же API, пуши о продлении.</li>
+                <li><strong>API ключи и webhooks</strong> — для школьных и вузовских порталов.</li>
+                <li><strong>Многоязычный интерфейс</strong> — i18n для каталога и форм.</li>
+              </ul>
+            </section>
+          </div>
+        </section>
+
+        <section class="page-section" data-page="faq">
+          <section class="panel panel--wide">
+            <div class="panel__header"><div><h3>Частые вопросы</h3><p>Ответы для читателей и гостей.</p></div></div>
+            <div id="faqAccordion" class="faq-accordion">
+              <details class="faq-item"><summary>Как записаться в библиотеку?</summary><p>Нажмите «Регистрация», заполните форму. После подтверждения администратором можно войти по email и паролю.</p></details>
+              <details class="faq-item"><summary>Почему не отправляется запрос на книгу?</summary><p>Запрос доступен только для роли «Читатель» и при наличии свободных экземпляров. Войдите в аккаунт и проверьте статус в каталоге.</p></details>
+              <details class="faq-item"><summary>Что такое «экземпляр» или «копия»?</summary><p>Это один физический экземпляр книги на полке с уникальным инвентарным номером. У одного названия может быть несколько экземпляров.</p></details>
+              <details class="faq-item"><summary>Как вернуть книгу?</summary><p>Читатель приносит книгу в библиотеку. Библиотекарь открывает вкладку «Выдача и возврат» и нажимает «Возврат» у нужной строки.</p></details>
+              <details class="faq-item"><summary>Где посмотреть экземпляры?</summary><p>Для библиотекаря и администратора — раздел «Работа → Экземпляры»: выберите книгу в списке и управляйте копиями на полке.</p></details>
+            </div>
+          </section>
+        </section>

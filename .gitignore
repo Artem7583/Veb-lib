@@ -1,0 +1,56 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# Секреты
+.env
+*.local
+
+# IDE / OS
+.idea/
+.vscode/
+*.swp
+Thumbs.db
+Desktop.ini
+
+# Логи
+deploy_out.txt
+deploy_exit.txt
+smoke_exit.txt
+smoke_out.txt
+*.log
+CHANGES.txt
+
+# Локальная документация и служебные скрипты (не часть приложения)
+diploma/
+docs/
+GIT_REPOSITORY.md
+*.docx
+*.pptx
+
+# Внутренние / одноразовые скрипты
+scripts/explore_server.py
+scripts/explore_server2.py
+scripts/explore_server3.py
+scripts/build_defense_materials.py
+scripts/build_presentation_v2.py
+scripts/capture_defense_screenshots.py
+scripts/insert_diploma_citations.py
+scripts/md_to_docx.py
+scripts/init_git_repo.py
+scripts/rebuild_project_git.py
+scripts/apply_category_fix.py
+scripts/fix_erd_layout.py
+scripts/build_erd_drawio.py
+scripts/build_23_tables_docx.py
+scripts/build_full_diploma.py
+scripts/build_diploma_30.py
+scripts/split_index_html.py
+scripts/diploma_content_rest.py
+scripts/diploma_content_s12_s13.py
+scripts/extract_ch1.py

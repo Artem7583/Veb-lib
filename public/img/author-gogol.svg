@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Gogol">
+  <defs>
+    <linearGradient id="gg" x1="1" y1="0" x2="0" y2="1">
+      <stop stop-color="#5a6a8a"/>
+      <stop offset="1" stop-color="#3a4558"/>
+    </linearGradient>
+  </defs>
+  <rect width="120" height="120" rx="24" fill="url(#gg)"/>
+  <circle cx="60" cy="44" r="18" fill="rgba(255,249,243,0.35)"/>
+  <ellipse cx="60" cy="88" rx="32" ry="22" fill="rgba(255,249,243,0.28)"/>
+  <text x="60" y="78" text-anchor="middle" fill="#fff9f3" font-family="Georgia, serif" font-size="28" font-weight="700">NG</text>
+</svg>

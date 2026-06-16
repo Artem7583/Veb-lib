@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Akhmatova">
+  <defs>
+    <linearGradient id="ga" x1="0" y1="1" x2="1" y2="0">
+      <stop stop-color="#446a54"/>
+      <stop offset="1" stop-color="#2d4a3a"/>
+    </linearGradient>
+  </defs>
+  <rect width="120" height="120" rx="24" fill="url(#ga)"/>
+  <circle cx="60" cy="44" r="18" fill="rgba(255,249,243,0.35)"/>
+  <ellipse cx="60" cy="88" rx="32" ry="22" fill="rgba(255,249,243,0.28)"/>
+  <text x="60" y="78" text-anchor="middle" fill="#fff9f3" font-family="Georgia, serif" font-size="28" font-weight="700">AA</text>
+</svg>

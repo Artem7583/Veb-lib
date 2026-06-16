@@ -1,0 +1,111 @@
+      <header class="site-header">
+        <div class="site-header__identity">
+          <a class="site-header__brand" href="#" data-route="home" data-nav-link>
+            <img src="/img/logo.svg" alt="Логотип библиотеки" class="site-header__logo" width="42" height="42" />
+            <p class="site-header__title" id="siteNameTitle">Библиотека</p>
+          </a>
+          <form id="filtersForm" class="site-header__search catalog-filters-wrap">
+            <div class="catalog-bar site-header__search-bar">
+              <label class="catalog-bar__search">
+                <span class="catalog-bar__label">Поиск</span>
+                <input type="search" name="search" id="catalogSearchInput" placeholder="Название, автор, ISBN…" autocomplete="off" />
+              </label>
+              <button type="submit" class="solid-button catalog-bar__submit">Найти</button>
+              <button type="button" class="ghost-button catalog-filters-btn guest-hidden" id="toggleFiltersBtn" aria-expanded="false" aria-controls="filtersDrawer">
+                Фильтры
+                <span class="catalog-filters-btn__chevron" aria-hidden="true"></span>
+              </button>
+            </div>
+            <p id="catalogFilterSummary" class="catalog-filter-summary guest-hidden" aria-live="polite"></p>
+            <div id="filtersDrawer" class="catalog-filters-drawer guest-hidden is-closed" role="region" aria-label="Фильтры каталога">
+              <div class="catalog-filters-drawer__inner">
+                <div class="catalog-filters-form">
+                  <label class="catalog-filter-field"><span>Категория</span><select name="categoryId" id="categoryFilter"></select></label>
+                  <label class="catalog-filter-field"><span>Язык</span><select name="language" id="languageFilter"></select></label>
+                  <label class="catalog-filter-field"><span>Наличие</span><select name="stockStatus" id="stockStatusFilter"></select></label>
+                  <label class="catalog-filter-field"><span>Сортировка</span><select name="bookSort" id="bookSort"><option value="alphaAsc">А-Я</option><option value="alphaDesc">Я-А</option><option value="yearDesc">Сначала новые</option><option value="yearAsc">Сначала старые</option></select></label>
+                  <label class="catalog-filter-field catalog-filter-field--year"><span>Год от</span><input type="number" name="yearFrom" min="1500" max="2100" placeholder="1500" inputmode="numeric" /></label>
+                  <label class="catalog-filter-field catalog-filter-field--year"><span>Год до</span><input type="number" name="yearTo" min="1500" max="2100" placeholder="2026" inputmode="numeric" /></label>
+                </div>
+                <div class="catalog-filters-drawer__actions">
+                  <button type="button" id="resetFilters" class="ghost-button filters-reset-btn">Сбросить</button>
+                  <button type="button" class="solid-button" id="applyFiltersBtn">Применить</button>
+                </div>
+              </div>
+            </div>
+          </form>
+          <div class="site-header__account">
+            <p class="site-header__tagline" id="topbarTagline">Электронный каталог и сервис для читателей</p>
+            <div class="auth-panel">
+              <button type="button" class="auth-chip logged-in-nav hidden" id="authUserChip" title="Открыть профиль">
+                <span id="currentRoleBadge" class="role-badge">Посетитель</span>
+                <span id="currentUserName" class="auth-chip__name">Посетитель</span>
+              </button>
+              <div class="auth-panel__actions">
+                <button class="solid-button guest-only" id="openAccountButton" type="button">Личный кабинет</button>
+                <button class="ghost-button auth-logout-btn logged-in-nav hidden" id="logoutButton" type="button">Выйти</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <nav class="site-header__nav" id="navTabs" aria-label="Основная навигация">
+          <button type="button" data-route="home" class="nav-tab site-nav-tab is-active" data-nav-link>Главная</button>
+          <button type="button" data-route="catalog" class="nav-tab site-nav-tab" data-nav-link>Каталог</button>
+          <span class="nav-dropdown nav-group visitor-only" data-nav-menu="site">
+            <button type="button" class="nav-tab site-nav-tab nav-tab--dropdown" aria-haspopup="true">О библиотеке</button>
+            <span class="nav-dropdown__panel">
+              <button type="button" data-route="readers-info" class="nav-dropdown__item" data-nav-link>Читателям</button>
+              <button type="button" data-route="news" class="nav-dropdown__item" data-nav-link>Новости</button>
+              <button type="button" data-route="about" class="nav-dropdown__item" data-nav-link>О нас</button>
+            </span>
+          </span>
+          <span class="nav-dropdown nav-group reader-only" data-nav-menu="reader" aria-label="Личный кабинет">
+            <button type="button" class="nav-tab site-nav-tab nav-tab--dropdown" aria-haspopup="true">Мой кабинет<span class="nav-badge hidden" id="navReaderCabinetBadge"></span></button>
+            <span class="nav-dropdown__panel">
+              <button type="button" data-route="cabinet" class="nav-dropdown__item" data-nav-link>Профиль</button>
+              <button type="button" data-route="my-books" class="nav-dropdown__item" data-nav-link>Мои книги</button>
+              <button type="button" data-route="requests" class="nav-dropdown__item" data-nav-link>Запросы</button>
+              <button type="button" data-route="history" class="nav-dropdown__item" data-nav-link>История</button>
+              <button type="button" data-route="favorites" class="nav-dropdown__item" data-nav-link>Избранное</button>
+              <button type="button" data-route="messages" class="nav-dropdown__item" data-nav-link>Сообщения</button>
+            </span>
+          </span>
+          <span class="nav-dropdown nav-group staff-cabinet-nav hidden" data-nav-menu="staff-cabinet" aria-label="Личный кабинет">
+            <button type="button" class="nav-tab site-nav-tab nav-tab--dropdown" aria-haspopup="true">Мой кабинет<span class="nav-badge hidden" id="navStaffCabinetBadge"></span></button>
+            <span class="nav-dropdown__panel">
+              <button type="button" data-route="cabinet" class="nav-dropdown__item" data-nav-link>Профиль</button>
+              <button type="button" data-route="messages" class="nav-dropdown__item" data-nav-link>Сообщения</button>
+            </span>
+          </span>
+          <span class="nav-dropdown staff-nav">
+            <button type="button" class="nav-tab site-nav-tab nav-tab--dropdown" id="staffWorkMenuBtn" aria-haspopup="true">Работа<span class="nav-badge hidden" id="navStaffWorkBadge"></span></button>
+            <span class="nav-dropdown__panel" id="staffWorkMenu">
+              <button type="button" data-route="copies" class="nav-dropdown__item catalog-staff-only" data-nav-link>Экземпляры</button>
+              <button type="button" data-route="return" class="nav-dropdown__item" data-nav-link>Выдача</button>
+              <button type="button" data-route="requests" class="nav-dropdown__item" data-nav-link>Запросы<span class="nav-badge hidden" id="navStaffRequestsBadge"></span></button>
+              <button type="button" data-route="patrons" class="nav-dropdown__item catalog-staff-only" data-nav-link>Читатели</button>
+            </span>
+          </span>
+          <button type="button" data-route="analytics" class="nav-tab site-nav-tab staff-nav" data-nav-link>Отчёты</button>
+          <span class="nav-dropdown admin-only-nav">
+            <button type="button" class="nav-tab site-nav-tab nav-tab--dropdown" aria-haspopup="true">Админ<span class="nav-badge hidden" id="navAdminBadge"></span></button>
+            <span class="nav-dropdown__panel">
+              <button type="button" data-route="users" class="nav-dropdown__item" data-nav-link>Пользователи</button>
+              <button type="button" data-route="messages" class="nav-dropdown__item" data-nav-link>Сообщения<span class="nav-badge hidden" id="navAdminMessagesBadge"></span></button>
+              <button type="button" data-route="settings" class="nav-dropdown__item" data-nav-link>Настройки</button>
+            </span>
+          </span>
+        </nav>
+        <button type="button" class="mobile-nav-toggle" id="mobileNavToggle" aria-expanded="false" aria-controls="mobileNavDrawer">Разделы сайта</button>
+        <div class="mobile-nav-drawer" id="mobileNavDrawer" aria-hidden="true">
+          <div class="mobile-nav-drawer__head">
+            <strong>Навигация</strong>
+            <button type="button" class="ghost-button" id="mobileNavClose">Закрыть</button>
+          </div>
+          <div class="mobile-nav-drawer__list" id="mobileNavList"></div>
+        </div>
+      </header>
+
+      <section class="staff-stats-bar staff-only" id="staffHero" aria-label="Сводка по фонду">
+        <div id="statsGrid" class="staff-stats-bar__grid"></div>
+      </section>

@@ -1,0 +1,178 @@
+    <dialog id="passwordDialog" class="login-dialog">
+      <form class="login-card" id="passwordForm">
+        <div class="login-card__header">
+          <h3>Смена пароля</h3>
+          <p>Укажите текущий пароль и новый (не короче 6 символов).</p>
+        </div>
+        <label><span>Текущий пароль</span><div class="password-field"><input name="currentPassword" type="password" required autocomplete="current-password" /><button class="ghost-button password-toggle" type="button" data-toggle-password>Показать</button></div></label>
+        <label><span>Новый пароль</span><div class="password-field"><input name="newPassword" type="password" required minlength="6" autocomplete="new-password" /><button class="ghost-button password-toggle" type="button" data-toggle-password>Показать</button></div></label>
+        <label><span>Повторите новый</span><div class="password-field"><input name="newPasswordConfirm" type="password" required minlength="6" autocomplete="new-password" /><button class="ghost-button password-toggle" type="button" data-toggle-password>Показать</button></div></label>
+        <div class="form-actions">
+          <button class="solid-button" type="submit">Сохранить</button>
+          <button class="ghost-button" type="button" id="closePasswordDialogBtn">Отмена</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="forgotPasswordDialog" class="login-dialog">
+      <div class="login-card login-card--wide">
+        <div class="login-card__header">
+          <h3>Восстановление пароля</h3>
+          <p class="small-text">Укажите email учётной записи читателя. На учебном стенде ссылка для нового пароля показывается на экране.</p>
+        </div>
+        <form id="forgotEmailForm" class="stack-form">
+          <div class="form-message hidden" id="forgotEmailMessage"></div>
+          <label><span>Email</span><input name="email" type="email" required autocomplete="email" /></label>
+          <p class="small-text form-field-hint">Если email не найден, проверьте регистрацию или обратитесь в библиотеку по телефону из подвала сайта.</p>
+          <div class="form-actions">
+            <button class="solid-button" type="submit">Получить ссылку</button>
+            <button class="ghost-button" type="button" id="closeForgotPasswordButton">Закрыть</button>
+          </div>
+        </form>
+      </div>
+    </dialog>
+
+    <dialog id="resetPasswordDialog" class="login-dialog">
+      <form class="login-card" id="resetPasswordForm">
+        <div class="login-card__header"><h3>Новый пароль</h3><p>Введите новый пароль по ссылке восстановления.</p></div>
+        <input type="hidden" name="token" />
+        <div class="form-message hidden" id="resetPasswordMessage"></div>
+        <label><span>Новый пароль</span><div class="password-field"><input name="newPassword" type="password" minlength="6" required /><button class="ghost-button password-toggle" type="button" data-toggle-password>Показать</button></div></label>
+        <label><span>Повторите пароль</span><div class="password-field"><input name="newPasswordConfirm" type="password" minlength="6" required /><button class="ghost-button password-toggle" type="button" data-toggle-password>Показать</button></div></label>
+        <div class="form-actions">
+          <button class="solid-button" type="submit">Сохранить пароль</button>
+          <button class="ghost-button" type="button" id="closeResetPasswordButton">Отмена</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="loginDialog" class="login-dialog">
+      <form class="login-card" id="loginForm">
+        <div class="login-card__header"><h3>Вход</h3><p>Email и пароль читателя или сотрудника.</p></div>
+        <div class="form-message hidden" id="loginMessage"></div>
+        <label><span>Email</span><input name="username" type="email" required autocomplete="username" /></label>
+        <label><span>Пароль</span><div class="password-field"><input name="password" type="password" required autocomplete="current-password" /><button class="ghost-button password-toggle" type="button" data-toggle-password>Показать</button></div></label>
+        <p class="login-card__links"><button type="button" class="link-button" id="openForgotPasswordButton">Забыли пароль?</button></p>
+        <div class="form-actions">
+          <button class="solid-button" type="submit">Войти</button>
+          <button class="ghost-button" type="button" id="closeLoginButton">Отмена</button>
+        </div>
+      </form>
+    </dialog>
+    <dialog id="registerDialog" class="login-dialog"><form method="dialog" class="login-card" id="registerForm"><div class="login-card__header"><h3>Регистрация</h3><p>После отправки заявка появится у администратора во вкладке «Пользователи».</p></div><div class="form-message form-message--success hidden" id="registerMessage"></div><label><span>ФИО</span><input name="fullName" required /></label><label><span>Email</span><input name="email" type="email" required /></label><label><span>Пароль</span><div class="password-field"><input name="password" type="password" minlength="6" required /><button class="ghost-button password-toggle" type="button" data-toggle-password>Показать</button></div></label><div class="form-actions"><button class="solid-button" type="submit" id="registerSubmitButton">Отправить заявку</button><button class="ghost-button" type="button" id="closeRegisterButton">Отмена</button></div></form></dialog>
+
+    <dialog id="bookDetailsDialog" class="login-dialog"><div class="login-card"><div class="login-card__header"><h3 id="bookDetailsTitle">Карточка книги</h3><p id="bookDetailsSubtitle"></p></div><div id="bookDetailsBody" class="stack-form"></div><div class="form-actions"><button class="solid-button" type="button" id="bookDetailsCloseButton">Закрыть</button></div></div></dialog>
+    <dialog id="patronProfileDialog" class="login-dialog">
+      <div class="login-card login-card--wide">
+        <div class="login-card__header">
+          <h3 id="patronProfileTitle">Профиль читателя</h3>
+          <p class="small-text">Статистика выдач и недавно прочитанные книги</p>
+        </div>
+        <div id="patronProfileBody" class="profile-panel"></div>
+        <div class="form-actions">
+          <button class="solid-button" type="button" id="closePatronProfileButton">Закрыть</button>
+        </div>
+      </div>
+    </dialog>
+    <dialog id="copyEditDialog" class="login-dialog">
+      <form class="login-card" id="copyEditForm">
+        <div class="login-card__header">
+          <h3>Экземпляр на полке</h3>
+          <p id="copyEditSubtitle">Изменения сохраняются только для выбранного инвентарного номера.</p>
+        </div>
+        <input type="hidden" name="copyId" />
+        <div class="copy-edit-meta" id="copyEditMeta"></div>
+        <div class="two-col">
+          <label><span>Состояние (1–5)</span><input type="number" name="conditionRating" min="1" max="5" required /></label>
+          <label><span>Статус на полке</span><select name="status"><option value="available">Доступен</option><option value="damaged">Повреждён</option></select></label>
+        </div>
+        <div class="two-col">
+          <label><span>Дата поступления</span><input type="date" name="acquisitionDate" required /></label>
+          <label><span>Учётная цена</span><input type="number" name="price" min="0" step="0.01" /></label>
+        </div>
+        <label><span>Примечание</span><textarea name="notes" rows="3" placeholder="Заметка для сотрудников: дефект переплёта, вкладка и т.п."></textarea></label>
+        <div class="form-actions">
+          <button class="solid-button" type="submit">Сохранить</button>
+          <button class="ghost-button" type="button" id="closeCopyEditButton">Отмена</button>
+        </div>
+      </form>
+    </dialog>
+    <dialog id="confirmDialog" class="login-dialog">
+      <div class="login-card modal-card--confirm">
+        <h3 id="confirmTitle">Подтверждение</h3>
+        <p id="confirmMessage"></p>
+        <div class="form-actions">
+          <button type="button" class="solid-button" id="confirmOkBtn">Подтвердить</button>
+          <button type="button" class="ghost-button" id="confirmCancelBtn">Отмена</button>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog id="bookFormDialog" class="login-dialog login-dialog--wide">
+      <form class="login-card login-card--wide" id="bookForm">
+        <div class="login-card__header"><h3 id="bookFormTitle">Новая книга</h3><p id="bookFormSubtitle">Библиографическое описание. Экземпляры — отдельно.</p></div>
+        <input type="hidden" name="id" /><input type="hidden" name="coverImage" />
+        <label><span>Название</span><input name="title" required /></label>
+        <label><span>Автор</span><input name="author" required /></label>
+        <label><span>ISBN</span><input name="isbn" required /></label>
+        <div class="two-col"><label><span>Категория</span><select name="categoryId" id="bookCategory" required></select></label><label><span>Язык</span><input name="language" value="Русский" required /></label></div>
+        <div class="two-col"><label><span>Год</span><input type="number" name="publishYear" min="1500" max="2100" required /></label><label><span>Издатель</span><input name="publisher" /></label></div>
+        <div class="two-col"><label><span>Полка</span><input name="shelfCode" /></label><label><span>Цена замены</span><input type="number" name="replacementCost" min="0" step="0.01" /></label></div>
+        <p id="bookEditCopiesHint" class="small-text form-field-hint hidden">Экземпляры редактируются в разделе «Работа → Экземпляры».</p>
+        <div class="three-col book-copy-fields-new">
+          <label><span id="initialCopiesLabel">Экз. при создании</span><input type="number" name="initialCopies" min="0" value="1" /></label>
+          <label><span>Дата поступления</span><input type="date" name="acquisitionDate" /></label>
+          <label><span>Состояние (1–5)</span><input type="number" name="conditionRating" min="1" max="5" value="5" /></label>
+        </div>
+        <label><span>Описание</span><textarea name="description" rows="3"></textarea></label>
+        <div class="cover-field"><div class="cover-field__preview" id="coverPreview">Нет обложки</div><div class="cover-field__controls"><label><span>Обложка</span><input type="file" name="cover" accept="image/*" /></label><button class="danger-button hidden" type="button" id="deleteCoverButton">Удалить обложку</button></div></div>
+        <div class="form-actions"><button class="solid-button" type="submit">Сохранить карточку</button><button class="ghost-button" type="button" id="resetBookForm">Очистить</button><button class="ghost-button" type="button" id="closeBookFormButton">Закрыть</button></div>
+      </form>
+    </dialog>
+
+    <dialog id="userFormDialog" class="login-dialog">
+      <form class="login-card" id="userForm">
+        <div class="login-card__header"><h3 id="userFormTitle">Пользователь</h3></div>
+        <input type="hidden" name="id" />
+        <label><span>ФИО</span><input name="fullName" required /></label>
+        <label><span>Email</span><input name="email" type="email" required /></label>
+        <label><span>Пароль</span><input name="password" type="password" minlength="6" placeholder="Новый — при создании" /></label>
+        <label><span>Роль</span><select name="role" required><option value="reader">Читатель</option><option value="librarian">Библиотекарь</option><option value="manager">Менеджер</option><option value="admin">Администратор</option></select></label>
+        <label><span>Активен</span><select name="isActive"><option value="true">Да</option><option value="false">Нет</option></select></label>
+        <div class="form-actions"><button class="solid-button" type="submit">Сохранить</button><button class="ghost-button" type="button" id="closeUserFormButton">Отмена</button></div>
+      </form>
+    </dialog>
+
+    <dialog id="patronFormDialog" class="login-dialog">
+      <form class="login-card" id="patronForm">
+        <div class="login-card__header"><h3 id="patronFormTitle">Читатель</h3></div>
+        <input type="hidden" name="id" />
+        <label><span>ФИО</span><input name="fullName" required /></label>
+        <div class="two-col"><label><span>Номер билета</span><input name="cardNumber" required /></label><label><span>Тип</span><input name="membershipType" value="Общий" /></label></div>
+        <div class="two-col"><label><span>Телефон</span><input name="phone" /></label><label><span>Email</span><input type="email" name="email" /></label></div>
+        <label><span>Адрес</span><input name="address" /></label>
+        <label><span>Логин</span><input name="appUsername" /></label>
+        <label><span>Статус</span><select name="patronStatus"><option value="active">Активный</option><option value="blocked">Заблокирован</option></select></label>
+        <div class="form-actions"><button class="solid-button" type="submit">Сохранить</button><button class="ghost-button" type="button" id="closePatronFormButton">Отмена</button></div>
+      </form>
+    </dialog>
+
+    <dialog id="addCopiesDialog" class="login-dialog">
+      <form class="login-card" id="addCopiesForm">
+        <div class="login-card__header">
+          <h3>Добавить экземпляры</h3>
+          <p id="addCopiesBookTitle"></p>
+          <p class="small-text">Система создаст новые инвентарные номера и поставит их на полку со статусом «Доступен».</p>
+        </div>
+        <input type="hidden" name="bookId" />
+        <div class="two-col">
+          <label><span>Количество</span><input type="number" name="count" min="1" max="50" value="1" required /></label>
+          <label><span>Состояние (1–5)</span><input type="number" name="conditionRating" min="1" max="5" value="5" required /></label>
+        </div>
+        <label><span>Дата поступления</span><input type="date" name="acquisitionDate" required /></label>
+        <div class="form-actions"><button class="solid-button" type="submit">Добавить на полку</button><button class="ghost-button" type="button" id="closeAddCopiesButton">Отмена</button></div>
+      </form>
+    </dialog>
+
+    <template id="bookCardTemplate"><article class="book-card" tabindex="0" role="button" aria-label="Открыть карточку книги"><div class="book-card__cover"></div><div class="book-card__top"><span class="pill pill--soft book-card__category"></span><span class="pill pill--accent book-card__status"></span></div><h3 class="book-card__title"></h3><p class="book-card__author"></p><div class="book-card__meta"></div><div class="book-card__footer"></div><div class="book-card__actions"><button class="ghost-button" data-action="request" type="button">Забронировать книгу</button><button class="ghost-button librarian-only-inline" data-action="edit" type="button">Изменить карточку</button><button class="danger-button librarian-only-inline" data-action="delete" type="button">Списать книгу</button></div><p class="book-card__hint">Нажмите на карточку, чтобы посмотреть описание</p></article></template>
+
